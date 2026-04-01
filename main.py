@@ -1,20 +1,23 @@
 import streamlit as st
 import pandas as pd
 from datetime import date
-#setup the Room Data ( All 11 rooms )
-Room_data={
-'Room 1':100.0,
-'Room 2':100.0,
-'Room 3':80.0,
-'Room 4':120.0,
-'Room 5 (pending)':0.0,
-'Room 6 (pending)':0.0,
-'Room 7 (pending)':0.0,
-'Room 8 (pending)':0.0,
-'Room 9 ( pending)':0.0,
-'Room 10 (pending)':0.0,
-'Room 11 (pending),':0.0
+
+# 1. Setup the Room Data (All 11 rooms)
+Room_data = {
+    'Room 1': 100.0,
+    'Room 2': 100.0,
+    'Room 3': 80.0,
+    'Room 4': 120.0,
+    'Room 5 (pending)': 0.0,
+    'Room 6 (pending)': 0.0,
+    'Room 7 (pending)': 0.0,
+    'Room 8 (pending)': 0.0,
+    'Room 9 (pending)': 0.0,
+    'Room 10 (pending)': 0.0,
+    'Room 11 (pending)': 0.0
 }
+
+# 2. Page Configuration
 st.set_page_config(page_title="Guest House Manager", layout="centered")
 
 st.title("🏨 Guest House Daily Manager")
@@ -22,11 +25,14 @@ st.write(f"Today's Date: {date.today()}")
 
 st.divider()
 
+# 3. Registration Form
 st.subheader("Register New Guest")
 
 guest_name = st.text_input("Full Name of Guest")
-room_choice = st.selectbox("Select Room", list(room_data.keys()))
+# Fixed the capital 'R' here so the error disappears!
+room_choice = st.selectbox("Select Room", list(Room_data.keys()))
 amount_paid = st.number_input("Amount Received (GHS)", min_value=0.0, step=10.0)
+
 # 4. Saving the Data
 if st.button("Confirm Booking"):
     if guest_name:
@@ -35,15 +41,15 @@ if st.button("Confirm Booking"):
             "Date": date.today(),
             "Guest": guest_name,
             "Room": room_choice,
-            "Paid": amount_paids
+            "Paid": amount_paid
         }])
 
         # Display success message
         st.success(f"✅ Registered {guest_name} in {room_choice}")
-        st.balloons()  # A little celebration for a successful sale!
+        st.balloons()  # Celebration!
 
         # Show the current entry in a table
-        st.write("Current Entry:")
+        st.write("Current Entry Details:")
         st.table(new_data)
     else:
-        st.error("Please enter the guest's name before confirming." )
+        st.error("Please enter the guest's name before confirming.")
