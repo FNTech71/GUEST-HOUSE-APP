@@ -1,16 +1,49 @@
-# This is a sample Python script.
+import streamlit as st
+import pandas as pd
+from datetime import date
+#setup the Room Data ( All 11 rooms )
+Room_data={
+'Room 1':100.0,
+'Room 2':100.0,
+'Room 3':80.0,
+'Room 4':120.0,
+'Room 5 (pending)':0.0,
+'Room 6 (pending)':0.0,
+'Room 7 (pending)':0.0
+'Room 8 (pending)':0.0,
+'Room 9 ( pending):'0.0,
+'Room 10 (pending),:'0.0,
+'Room 11 (pending),:'0.0
+}
+st.set_page_config(page_title="Guest House Manager", layout="centered")
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+st.title("🏨 Guest House Daily Manager")
+st.write(f"Today's Date: {date.today()}")
 
+st.divider()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+st.subheader("Register New Guest")
 
+guest_name = st.text_input("Full Name of Guest")
+room_choice = st.selectbox("Select Room", list(room_data.keys()))
+amount_paid = st.number_input("Amount Received (GHS)", min_value=0.0, step=10.0)
+# 4. Saving the Data
+if st.button("Confirm Booking"):
+    if guest_name:
+        # This creates a small table of the current entry
+        new_data = pd.DataFrame([{
+            "Date": date.today(),
+            "Guest": guest_name,
+            "Room": room_choice,
+            "Paid": amount_paids
+        }])
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+        # Display success message
+        st.success(f"✅ Registered {guest_name} in {room_choice}")
+        st.balloons()  # A little celebration for a successful sale!
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        # Show the current entry in a table
+        st.write("Current Entry:")
+        st.table(new_data)
+    else:
+        st.error("Please enter the guest's name before confirming."
