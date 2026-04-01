@@ -9,11 +9,11 @@ Room_data={
 'Room 4':120.0,
 'Room 5 (pending)':0.0,
 'Room 6 (pending)':0.0,
-'Room 7 (pending)':0.0
+'Room 7 (pending)':0.0,
 'Room 8 (pending)':0.0,
-'Room 9 ( pending):'0.0,
-'Room 10 (pending),:'0.0,
-'Room 11 (pending),:'0.0
+'Room 9 ( pending)':0.0,
+'Room 10 (pending)':0.0,
+'Room 11 (pending),':0.0
 }
 st.set_page_config(page_title="Guest House Manager", layout="centered")
 
@@ -46,4 +46,4 @@ if st.button("Confirm Booking"):
         st.write("Current Entry:")
         st.table(new_data)
     else:
-        st.error("Please enter the guest's name before confirming."
+        st.error("Please enter the guest's name before confirming." )
